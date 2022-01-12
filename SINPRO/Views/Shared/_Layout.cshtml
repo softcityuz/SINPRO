@@ -70,25 +70,25 @@
                     <!-- Nav items -->
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" asp-controller="Home" asp-action="Index">
+                            <a class="nav-link active" asp-controller="Home" asp-action="Index" id="HomeIndex">
                                 <i class="ni ni-bullet-list-67 text-default"></i>
                                 <span class="nav-link-text">Home</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Users">
+                            <a class="nav-link" asp-controller="Home" asp-action="Users" id="HomeUsers">
                                 <i class="ni ni-circle-08 text-pink"></i>
                                 <span class="nav-link-text">Users</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " asp-controller="Home" asp-action="News">
+                            <a class="nav-link " asp-controller="Home" asp-action="News" id="HomeNews">
                                 <i class="ni ni-tv-2 text-primary"></i>
                                 <span class="nav-link-text">Yangiliklar</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Banners">
+                            <a class="nav-link" asp-controller="Home" asp-action="Banners" id="HomeBanners">
                                 <i class="ni ni-single-02 text-yellow"></i>
                                 <span class="nav-link-text">Bannerlar</span>
                             </a>
@@ -134,3 +134,26 @@
         @await RenderSectionAsync("Scripts", required: false)
     </body>
     </html>*@
+<script>
+    $(function () {
+        isActive();
+    });
+    function isActive() {
+        var url = window.location.pathname.split("/");
+        var _controller = url[1];
+        var _action = url[2];
+        removeClass();
+        if (_controller == "" && _action == undefined) {
+            $("#HomeIndex").addClass("active");
+        }
+        else {
+        $("#" + _controller + _action).addClass("active");
+        }
+    }
+    function removeClass() {
+        $("#HomeIndex").removeClass("active");
+        $("#HomeBanners").removeClass("active");
+        $("#HomeNews").removeClass("active");
+        $("#HomeUsers").removeClass("active");
+    }
+</script>
