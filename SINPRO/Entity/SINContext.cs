@@ -14,11 +14,11 @@ namespace SINPRO.Entity
         {
         }
         //base table
-        public DbSet<mBanners> mBanners { get; set; }
-        public DbSet<mMatches> mMatches { get; set; }
-        public DbSet<mNews> mNews { get; set; }
-        public DbSet<mRoles> mRoles { get; set; }
-        public DbSet<mUsers> mUsers { get; set; }
+        public DbSet<mBanner> mBanner { get; set; }
+        public DbSet<mMatch> mMatch { get; set; }
+        public DbSet<mNew> mNew { get; set; }
+        public DbSet<mRole> mRole { get; set; }
+        public DbSet<mUser> mUser { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
