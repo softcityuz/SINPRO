@@ -1,0 +1,164 @@
+﻿
+@{
+    ViewData["Title"] = "News";
+}
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+    .updated {
+        border: 1px solid #808080;
+    }
+
+        .updated .rows {
+            display: grid;
+            grid-template-columns: 30% 35% 25% 10%;
+        }
+
+            .updated .rows .colss {
+                padding: 10px;
+                border: 1px solid #808080;
+            }
+
+    .table td, .table th {
+        white-space: normal;
+    }
+
+    .ps {
+        white-space: nowrap;
+    }
+</style>
+<div class="container-fluid mt-6">
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Yangilik sarlavhasi</label>
+                <input type="text" class="form-control" id="inputEmail4" placeholder="Yangilik sarlavhasi">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputPassword4">Matni</label>
+                <input type="text" class="form-control" id="inputPassword4" placeholder="Matni">
+            </div>
+        </div>
+        <input type="file">
+
+        <button type="submit" class="btn btn-primary">Yuklash</button>
+    </form>
+    <div class="rows">
+        <table class="table table-bordered" width="100%">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">#</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>
+                        La Liganing bu mavsumdagi eng yaxshi to'purarlari.
+                    </td>
+                    <td>🔹 9-yanvar kuni futbol boʻyicha Afrika kubogi bahslariga start beriladi. 2021-yil yakunida boʻlib oʻtishi kerak boʻlgan turnir bir necha bor turli sabablarga koʻra qoldirilgach mana endi Kamerun - Burkina-Faso oʻyini bilan boshlanadi.</td>
+                    <td style="white-space:nowrap;">
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i>Edit</a>
+                            <a href="#" class="btn btn-info">Details</a>
+                            <a href="#" class="btn btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>
+                        La Liganing bu mavsumdagi eng yaxshi to'purarlari.
+                    </td>
+                    <td>
+                        🔹 9-yanvar kuni futbol boʻyicha Afrika kubogi bahslariga start beriladi. 2021-yil yakunida boʻlib
+                        oʻtishi kerak boʻlgan turnir bir necha bor turli sabablarga koʻra qoldirilgach mana endi Kamerun - Burkina-Faso oʻyini bilan boshlanadi.
+                    </td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="#" class="btn btn-primary"><i class="fa fa-eye"></i>Edit</a>
+                            <a href="#" class="btn btn-info">Details</a>
+                            <a href="#" class="btn btn-danger">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
