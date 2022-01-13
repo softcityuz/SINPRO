@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SINPRO.InputTypes;
 using SINPRO.Logic;
 using System;
@@ -12,6 +13,7 @@ namespace SINPRO.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "returnPurchases")]
     public class LoginAPIController : ControllerBase
     {
         private readonly IAuthLogic _authLogic;
