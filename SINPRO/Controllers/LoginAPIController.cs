@@ -22,8 +22,8 @@ namespace SINPRO.Controllers
         }
 
         // GET: api/<LoginController>
-        [HttpGet]
-        public LoginViewModel Get(string Email,string Password)
+        [HttpPost]
+        public LoginViewModel PostLogin(string Email,string Password)
         {
             LoginInputType item = new LoginInputType
             {
