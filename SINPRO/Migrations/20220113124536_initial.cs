@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SINPRO.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -130,6 +130,21 @@ namespace SINPRO.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.InsertData(
+                table: "mRole",
+                columns: new[] { "id", "inserted", "parentId", "resourceName", "status", "updated" },
+                values: new object[] { 1, new DateTime(2022, 1, 13, 17, 45, 36, 51, DateTimeKind.Local).AddTicks(3904), 1, "admin", true, new DateTime(2022, 1, 13, 17, 45, 36, 52, DateTimeKind.Local).AddTicks(1598) });
+
+            migrationBuilder.InsertData(
+                table: "mRole",
+                columns: new[] { "id", "inserted", "parentId", "resourceName", "status", "updated" },
+                values: new object[] { 2, new DateTime(2022, 1, 13, 17, 45, 36, 52, DateTimeKind.Local).AddTicks(2538), 2, "user", true, new DateTime(2022, 1, 13, 17, 45, 36, 52, DateTimeKind.Local).AddTicks(2545) });
+
+            migrationBuilder.InsertData(
+                table: "mUser",
+                columns: new[] { "id", "email", "fName", "inserted", "password", "phone", "refershTokenExpiration", "refreshToken", "roleId", "sName", "status", "updated" },
+                values: new object[] { 1, "admin@gmail.com", null, new DateTime(2022, 1, 13, 17, 45, 36, 53, DateTimeKind.Local).AddTicks(6712), "DDWjBLfJgK1/V+Owzhs/E9yvyP/YGaFnsFpbECWHh/cuafCO", null, null, null, 1, null, 1, new DateTime(2022, 1, 13, 17, 45, 36, 53, DateTimeKind.Local).AddTicks(7054) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_mUser_roleId",

@@ -9,15 +9,15 @@ using SINPRO.Entity;
 namespace SINPRO.Migrations
 {
     [DbContext(typeof(SINContext))]
-    [Migration("20220112193538_Initial")]
-    partial class Initial
+    [Migration("20220113124536_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.10");
+                .HasAnnotation("ProductVersion", "5.0.12");
 
             modelBuilder.Entity("SINPRO.Entity.DataModels.mBanner", b =>
                 {
@@ -127,6 +127,26 @@ namespace SINPRO.Migrations
                     b.HasKey("id");
 
                     b.ToTable("mRole");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            inserted = new DateTime(2022, 1, 13, 17, 45, 36, 51, DateTimeKind.Local).AddTicks(3904),
+                            parentId = 1,
+                            resourceName = "admin",
+                            status = true,
+                            updated = new DateTime(2022, 1, 13, 17, 45, 36, 52, DateTimeKind.Local).AddTicks(1598)
+                        },
+                        new
+                        {
+                            id = 2,
+                            inserted = new DateTime(2022, 1, 13, 17, 45, 36, 52, DateTimeKind.Local).AddTicks(2538),
+                            parentId = 2,
+                            resourceName = "user",
+                            status = true,
+                            updated = new DateTime(2022, 1, 13, 17, 45, 36, 52, DateTimeKind.Local).AddTicks(2545)
+                        });
                 });
 
             modelBuilder.Entity("SINPRO.Entity.DataModels.mUser", b =>
@@ -173,6 +193,18 @@ namespace SINPRO.Migrations
                     b.HasIndex("roleId");
 
                     b.ToTable("mUser");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1,
+                            email = "admin@gmail.com",
+                            inserted = new DateTime(2022, 1, 13, 17, 45, 36, 53, DateTimeKind.Local).AddTicks(6712),
+                            password = "DDWjBLfJgK1/V+Owzhs/E9yvyP/YGaFnsFpbECWHh/cuafCO",
+                            roleId = 1,
+                            status = 1,
+                            updated = new DateTime(2022, 1, 13, 17, 45, 36, 53, DateTimeKind.Local).AddTicks(7054)
+                        });
                 });
 
             modelBuilder.Entity("SINPRO.Entity.DataModels.mUser", b =>
