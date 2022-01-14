@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SINPRO.Entity;
 using SINPRO.Entity.DataModels;
+using SINPRO.Services;
 
 namespace SINPRO.Controllers
 {
@@ -15,19 +17,20 @@ namespace SINPRO.Controllers
     public class BannersAPIController : ControllerBase
     {
         private readonly SINContext _context;
-
-        public BannersAPIController(SINContext context)
+        private readonly ImBannerService _bannerService;
+        public BannersAPIController(SINContext context, ImBannerService bannerService)
         {
             _context = context;
+            _bannerService = bannerService;
         }
-
+        [Authorize]
         // GET: api/Banners
         [HttpGet]
         public async Task<ActionResult<IEnumerable<mBanner>>> GetmBanner()
         {
             return await _context.mBanner.ToListAsync();
         }
-
+        [Authorize]
         // GET: api/Banners/5
         [HttpGet("{id}")]
         public async Task<ActionResult<mBanner>> GetmBanner(int id)
@@ -41,7 +44,7 @@ namespace SINPRO.Controllers
 
             return mBanner;
         }
-
+        [Authorize(Policy = "admin")]
         // PUT: api/Banners/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -51,7 +54,9 @@ namespace SINPRO.Controllers
             {
                 return BadRequest();
             }
-
+            var result= _bannerService.GetByID(id);
+            mBanner.inserted = result.inserted;
+            mBanner.updated = result.updated;
             _context.Entry(mBanner).State = EntityState.Modified;
 
             try
@@ -75,15 +80,18 @@ namespace SINPRO.Controllers
 
         // POST: api/Banners
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize(Policy = "admin")]
         [HttpPost]
         public async Task<ActionResult<mBanner>> PostmBanner(mBanner mBanner)
         {
+            mBanner.inserted = DateTime.Now;
             _context.mBanner.Add(mBanner);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetmBanner", new { id = mBanner.id }, mBanner);
         }
 
+        [Authorize(Policy = "admin")]
         // DELETE: api/Banners/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletemBanner(int id)
@@ -99,7 +107,7 @@ namespace SINPRO.Controllers
 
             return NoContent();
         }
-
+        [Authorize(Policy = "admin")]
         private bool mBannerExists(int id)
         {
             return _context.mBanner.Any(e => e.id == id);

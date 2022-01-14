@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SINPRO.Entity;
 using SINPRO.Entity.DataModels;
+using SINPRO.Services;
 
 namespace SINPRO.Controllers
 {
@@ -15,13 +17,16 @@ namespace SINPRO.Controllers
     public class mMatchesController : ControllerBase
     {
         private readonly SINContext _context;
+        private readonly ImMatchService _matchService;
 
-        public mMatchesController(SINContext context)
+        public mMatchesController(SINContext context, ImMatchService matchService)
         {
             _context = context;
+            _matchService = matchService;
         }
 
         // GET: api/mMatches
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<mMatch>>> GetmMatch()
         {
@@ -44,6 +49,7 @@ namespace SINPRO.Controllers
 
         // PUT: api/mMatches/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutmMatch(int id, mMatch mMatch)
         {
@@ -51,7 +57,9 @@ namespace SINPRO.Controllers
             {
                 return BadRequest();
             }
-
+            var res = _matchService.GetByID(id);
+            mMatch.inserted = res.inserted;
+            mMatch.updated = DateTime.Now;
             _context.Entry(mMatch).State = EntityState.Modified;
 
             try
@@ -75,9 +83,11 @@ namespace SINPRO.Controllers
 
         // POST: api/mMatches
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<mMatch>> PostmMatch(mMatch mMatch)
         {
+            mMatch.inserted = DateTime.Now;
             _context.mMatch.Add(mMatch);
             await _context.SaveChangesAsync();
 
@@ -85,6 +95,7 @@ namespace SINPRO.Controllers
         }
 
         // DELETE: api/mMatches/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletemMatch(int id)
         {
@@ -99,7 +110,7 @@ namespace SINPRO.Controllers
 
             return NoContent();
         }
-
+        [Authorize]
         private bool mMatchExists(int id)
         {
             return _context.mMatch.Any(e => e.id == id);

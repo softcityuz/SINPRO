@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SINPRO.InputTypes;
 using SINPRO.Logic;
 using System;
@@ -13,24 +12,19 @@ namespace SINPRO.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginAPIController : ControllerBase
+    public class RegisterAPIController : ControllerBase
     {
         private readonly IAuthLogic _authLogic;
-        public LoginAPIController(IAuthLogic authLogic)
+
+        public RegisterAPIController(IAuthLogic authLogic)
         {
             _authLogic = authLogic;
         }
 
-        // GET: api/<LoginController>
         [HttpPost]
-        public LoginViewModel PostLogin(string Email,string Password)
+        public string Post(RegisterInputType input)
         {
-            LoginInputType item = new LoginInputType
-            {
-                Email = Email,
-                Password = Password
-            };
-            return _authLogic.Login(item);
+           return _authLogic.Register(input);
         }
     }
 }

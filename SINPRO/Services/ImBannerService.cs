@@ -11,6 +11,7 @@ namespace SINPRO.Services
     public interface ImBannerService
     {
         IQueryable<mBanner> GetAll();
+        IAsyncEnumerable<mBanner> GetAllAsync();
         mBanner GetByID(int id);
         mBanner Insert(mBanner item);
         mBanner Update(mBanner item);
@@ -35,6 +36,11 @@ namespace SINPRO.Services
         public IQueryable<mBanner> GetAll()
         {
             return _db.mBanner.AsQueryable();
+        }
+
+        public IAsyncEnumerable<mBanner> GetAllAsync()
+        {
+            return _db.mBanner.AsAsyncEnumerable();
         }
 
         public mBanner GetByID(int id)

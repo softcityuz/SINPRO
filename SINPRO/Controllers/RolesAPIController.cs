@@ -2,23 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SINPRO.Entity;
 using SINPRO.Entity.DataModels;
+using SINPRO.Services;
 
 namespace SINPRO.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy ="roles")]
     public class RolesAPIController : ControllerBase
     {
         private readonly SINContext _context;
+        private readonly ImRoleService _rolesService;
 
-        public RolesAPIController(SINContext context)
+        public RolesAPIController(SINContext context, ImRoleService rolesService)
         {
             _context = context;
+            _rolesService = rolesService;
         }
 
         // GET: api/Roles
@@ -51,7 +56,9 @@ namespace SINPRO.Controllers
             {
                 return BadRequest();
             }
-
+            var res = _rolesService.GetByID(id);
+            mRole.inserted = res.inserted;
+            mRole.updated = DateTime.Now;
             _context.Entry(mRole).State = EntityState.Modified;
 
             try
@@ -78,6 +85,7 @@ namespace SINPRO.Controllers
         [HttpPost]
         public async Task<ActionResult<mRole>> PostmRole(mRole mRole)
         {
+            mRole.inserted = DateTime.Now;
             _context.mRole.Add(mRole);
             await _context.SaveChangesAsync();
 

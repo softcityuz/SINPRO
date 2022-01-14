@@ -2,23 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SINPRO.Entity;
 using SINPRO.Entity.DataModels;
+using SINPRO.Services;
 
 namespace SINPRO.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "users")]
     public class UsersAPIController : ControllerBase
     {
         private readonly SINContext _context;
+        private readonly ImUserService _usersService;
 
-        public UsersAPIController(SINContext context)
+        public UsersAPIController(SINContext context, ImUserService usersService)
         {
             _context = context;
+            _usersService = usersService;
         }
 
         // GET: api/Users
@@ -51,7 +56,9 @@ namespace SINPRO.Controllers
             {
                 return BadRequest();
             }
-
+            var res = _usersService.GetByID(id);
+            mUser.inserted = res.inserted;
+            mUser.updated = DateTime.Now;
             _context.Entry(mUser).State = EntityState.Modified;
 
             try
@@ -78,6 +85,7 @@ namespace SINPRO.Controllers
         [HttpPost]
         public async Task<ActionResult<mUser>> PostmUser(mUser mUser)
         {
+            mUser.inserted = DateTime.Now;
             _context.mUser.Add(mUser);
             await _context.SaveChangesAsync();
 
