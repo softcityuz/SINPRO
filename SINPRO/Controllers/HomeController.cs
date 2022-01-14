@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
 namespace SINPRO.Controllers
 {
     public class HomeController : Controller
@@ -32,25 +32,46 @@ namespace SINPRO.Controllers
         }
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("userName") == null)
+            {
+                return RedirectToAction("Login", "Account", new { msg = 2 });
+            }
+            ViewData["userName"] = HttpContext.Session.GetString("userName");
             return View();
         }
 
         public IActionResult Users()
         {
+            if (HttpContext.Session.GetString("userName") == null)
+            {
+                return RedirectToAction("Login", "Account", new { msg = 2 });
+            }
             return View();
         }
         public IActionResult News()
         {
+            if (HttpContext.Session.GetString("userName") == null)
+            {
+                return RedirectToAction("Login", "Account", new { msg = 2 });
+            }
             return View();
         }
         public IActionResult Banners()
         {
+            if (HttpContext.Session.GetString("userName") == null)
+            {
+                return RedirectToAction("Login", "Account", new { msg = 2 });
+            }
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            if (HttpContext.Session.GetString("userName") == null)
+            {
+                return RedirectToAction("Login", "Account", new { msg = 2 });
+            }
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 

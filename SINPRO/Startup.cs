@@ -52,6 +52,7 @@ namespace SINPRO
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenSettings.Key)),
                         ValidateIssuerSigningKey = true
                     };
+                    
                 });
             //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             //    .AddCookie(options =>
@@ -74,10 +75,11 @@ namespace SINPRO
             services.AddScoped<ImNewService, mNewService>();
             services.AddScoped<ImRoleService, mRoleService>();
             services.AddScoped<ImUserService, mUserService>();
-            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-            //    .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddSession(options =>
+            options.IdleTimeout = TimeSpan.FromMinutes(15));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -99,6 +101,8 @@ namespace SINPRO
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();
