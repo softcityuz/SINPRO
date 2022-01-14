@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -52,6 +53,10 @@ namespace SINPRO
                         ValidateIssuerSigningKey = true
                     };
                 });
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //    .AddCookie(options =>
+            //        options.LoginPath = "/login"
+            //    );
             services.AddAuthorization(options =>
             {
 
