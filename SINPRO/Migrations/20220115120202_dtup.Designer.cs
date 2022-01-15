@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SINPRO.Entity;
 
 namespace SINPRO.Migrations
 {
     [DbContext(typeof(SINContext))]
-    partial class SINContextModelSnapshot : ModelSnapshot
+    [Migration("20220115120202_dtup")]
+    partial class dtup
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,20 +132,20 @@ namespace SINPRO.Migrations
                         new
                         {
                             id = 1,
-                            inserted = new DateTime(2022, 1, 16, 3, 3, 45, 134, DateTimeKind.Local).AddTicks(1977),
+                            inserted = new DateTime(2022, 1, 15, 17, 2, 2, 329, DateTimeKind.Local).AddTicks(6209),
                             parentId = 1,
                             resourceName = "admin",
                             status = true,
-                            updated = new DateTime(2022, 1, 16, 3, 3, 45, 134, DateTimeKind.Local).AddTicks(2234)
+                            updated = new DateTime(2022, 1, 15, 17, 2, 2, 329, DateTimeKind.Local).AddTicks(6460)
                         },
                         new
                         {
                             id = 2,
-                            inserted = new DateTime(2022, 1, 16, 3, 3, 45, 134, DateTimeKind.Local).AddTicks(2747),
+                            inserted = new DateTime(2022, 1, 15, 17, 2, 2, 329, DateTimeKind.Local).AddTicks(6949),
                             parentId = 2,
                             resourceName = "user",
                             status = true,
-                            updated = new DateTime(2022, 1, 16, 3, 3, 45, 134, DateTimeKind.Local).AddTicks(2751)
+                            updated = new DateTime(2022, 1, 15, 17, 2, 2, 329, DateTimeKind.Local).AddTicks(6953)
                         });
                 });
 
@@ -183,9 +185,6 @@ namespace SINPRO.Migrations
                     b.Property<int>("status")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("statusDate")
-                        .HasColumnType("datetime(6)");
-
                     b.Property<DateTime?>("updated")
                         .HasColumnType("datetime(6)");
 
@@ -200,12 +199,11 @@ namespace SINPRO.Migrations
                         {
                             id = 1,
                             email = "admin@gmail.com",
-                            inserted = new DateTime(2022, 1, 16, 3, 3, 45, 135, DateTimeKind.Local).AddTicks(3625),
+                            inserted = new DateTime(2022, 1, 15, 17, 2, 2, 330, DateTimeKind.Local).AddTicks(6830),
                             password = "DDWjBLfJgK1/V+Owzhs/E9yvyP/YGaFnsFpbECWHh/cuafCO",
                             roleId = 1,
                             status = 1,
-                            statusDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            updated = new DateTime(2022, 1, 16, 3, 3, 45, 135, DateTimeKind.Local).AddTicks(3854)
+                            updated = new DateTime(2022, 1, 15, 17, 2, 2, 330, DateTimeKind.Local).AddTicks(7045)
                         });
                 });
 

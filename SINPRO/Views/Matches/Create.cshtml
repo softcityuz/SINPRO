@@ -1,0 +1,55 @@
+﻿@model SINPRO.Entity.DataModels.mMatch
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>mMatch</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="firstTimeName" class="control-label"></label>
+                <input asp-for="firstTimeName" class="form-control" required />
+                <span asp-validation-for="firstTimeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="firstTimePhoto" class="control-label"></label>
+                <input asp-for="firstTimePhoto" class="form-control" type="file"required/>
+                <span asp-validation-for="firstTimePhoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="secondTimeName" class="control-label"></label>
+                <input asp-for="secondTimeName" class="form-control" />
+                <span asp-validation-for="secondTimeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="secondTimePhoto" class="control-label"></label>
+                <input asp-for="secondTimePhoto" class="form-control"type="file"required />
+                <span asp-validation-for="secondTimePhoto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="matchTime" class="control-label"></label>
+                <input asp-for="matchTime" class="form-control"required />
+                <span asp-validation-for="matchTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="matchDate" class="control-label"></label>
+                <input asp-for="matchDate" class="form-control"type="date" required/>
+                <span asp-validation-for="matchDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@

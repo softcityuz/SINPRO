@@ -1,0 +1,72 @@
+﻿@model SINPRO.Entity.DataModels.mUser
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>mUser</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="fName" class="control-label"></label>
+                <input asp-for="fName" class="form-control" />
+                <span asp-validation-for="fName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sName" class="control-label"></label>
+                <input asp-for="sName" class="form-control" />
+                <span asp-validation-for="sName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="phone" class="control-label"></label>
+                <input asp-for="phone" class="form-control" />
+                <span asp-validation-for="phone" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                    <label asp-for="email" class="control-label"></label>
+                    <input asp-for="email" class="form-control" />
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                    <label asp-for="roleId" class="control-label"></label>
+                    <select asp-for="roleId" class="form-control" asp-items="ViewBag.roleId"></select>
+                    <span asp-validation-for="roleId" class="text-danger"></span>
+                </div>*@
+            <div class="form-group">
+                <label asp-for="statusDate" class="control-label"></label>
+                <input type="date" asp-for="statusDate" class="form-control" required />
+                <span asp-validation-for="statusDate" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="status" class="control-label"></label>
+                <select asp-for="status" class="form-control">
+                    <option value="1" selected>Active</option>
+                    <option value="2">No active</option>
+                </select>
+                <span asp-validation-for="status" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@

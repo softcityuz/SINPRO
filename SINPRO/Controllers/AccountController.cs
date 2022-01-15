@@ -27,12 +27,12 @@ namespace SINPRO.Controllers
         public IActionResult Login(string email, string password)
         {
             var _user = _userService.GetBySignIn(email, password);
-            if (_user != null)
+            if (_user != null && _user.roleId == 1)
             {
                 HttpContext.Session.SetString("userName", _user.email);
                 HttpContext.Session.SetString("userRole", _user.roleId.ToString());
                 HttpContext.Session.SetString("userId", _user.id.ToString());
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Matches");
             }
             HttpContext.Session.Clear();
             return RedirectToAction("Login", "Account", new { msg = 2 });

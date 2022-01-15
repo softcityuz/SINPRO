@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SINPRO.Entity.DataModels.mNew>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create" class="btn btn-success"> Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.discription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.photo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.inserted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.updated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discription)
+            </td>
+            <td>
+                <img src="@item.photo" alt="News photo" width="150"height="100"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.inserted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.updated)
+            </td>
+            <td>
+                <div class="btn-group">
+                    <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.id">Edit</a>
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.id">Details</a>
+                    <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.id">Delete</a>
+                </div>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
-﻿using SINPRO.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using SINPRO.Entity;
 using SINPRO.Entity.DataModels;
 using System;
 using System.Collections.Generic;
@@ -52,9 +53,12 @@ namespace SINPRO.Services
 
         public mRole Update(mRole item)
         {
+            SINContextFactory contextFactory = new SINContextFactory();
+            var db = contextFactory.CreateDbContext(default);
             item.inserted = GetByID(item.id).inserted;
             item.updated = DateTime.Now;
-            _db.Update(item);
+            db.Entry(item).State = EntityState.Modified;
+            db.SaveChanges();
             return item;
         }
     }

@@ -1,4 +1,5 @@
-﻿using SINPRO.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using SINPRO.Entity;
 using SINPRO.Entity.DataModels;
 using System;
 using System.Collections.Generic;
@@ -51,9 +52,13 @@ namespace SINPRO.Services
 
         public mNew Update(mNew item)
         {
+            SINContextFactory contextFactory = new SINContextFactory();
+            var db = contextFactory.CreateDbContext(default);
+            item.photo = item.photo == null || item.photo == "" ? GetByID(item.id).photo : item.photo;
             item.inserted = GetByID(item.id).inserted;
             item.updated = DateTime.Now;
-            _db.Update(item);
+            db.Entry(item).State = EntityState.Modified;
+            db.SaveChanges();
             return item;
         }
     }

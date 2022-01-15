@@ -16,7 +16,7 @@ namespace SINPRO.Entity.DataModels
         public string firstTimePhoto { get; set; }
         public string secondTimeName { get; set; }
         public string secondTimePhoto { get; set; }
-        public TimeSpan matchTime { get; set; }
+        public int matchTime { get; set; }
         public DateTime matchDate { get; set; }
         public DateTime inserted { get; set; }
         public DateTime? updated { get; set; }

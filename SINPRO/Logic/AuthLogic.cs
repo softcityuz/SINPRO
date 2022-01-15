@@ -406,15 +406,25 @@ namespace SINPRO.Logic
 				return "Invalid Token";
 			}
 
-
-			///*result*/.AccessToken = GetJWTAuthKey(user);
-
-
 			_authContext.SaveChanges();
 			return null;
 		}
 
-		UserViewModel IAuthLogic.User
+        public string Register(mUser mUser)
+        {
+			RegisterInputType registerInputType = new RegisterInputType
+			{
+				Email = mUser.email,
+				Lastname = mUser.sName,
+				Name = mUser.fName,
+				Password = mUser.password,
+				ConfirmPassword = mUser.password,
+				Phone = mUser.phone
+			};
+			return Register(registerInputType);
+        }
+
+        UserViewModel IAuthLogic.User
 			=> GetUserbyToken();
 	}
 }

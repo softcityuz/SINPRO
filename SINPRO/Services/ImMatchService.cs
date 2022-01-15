@@ -1,4 +1,5 @@
-﻿using SINPRO.Entity;
+﻿using Microsoft.EntityFrameworkCore;
+using SINPRO.Entity;
 using SINPRO.Entity.DataModels;
 using System;
 using System.Collections.Generic;
@@ -51,9 +52,14 @@ namespace SINPRO.Services
 
         public mMatch Update(mMatch item)
         {
+            SINContextFactory contextFactory = new SINContextFactory();
+            var db = contextFactory.CreateDbContext(default);
             item.inserted = GetByID(item.id).inserted;
             item.updated = DateTime.Now;
-            _db.Update(item);
+            item.firstTimePhoto = item.firstTimePhoto == null || item.firstTimePhoto == "" ? GetByID(item.id).firstTimePhoto : item.firstTimePhoto;
+            item.secondTimePhoto = item.secondTimePhoto == null || item.secondTimePhoto == "" ? GetByID(item.id).secondTimePhoto : item.secondTimePhoto;
+            db.Entry(item).State = EntityState.Modified;
+            db.SaveChanges();
             return item;
         }
     }

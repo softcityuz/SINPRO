@@ -14,12 +14,12 @@ namespace SINPRO.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class mMatchesController : ControllerBase
+    public class MatchesAPIController : ControllerBase
     {
         private readonly SINContext _context;
         private readonly ImMatchService _matchService;
 
-        public mMatchesController(SINContext context, ImMatchService matchService)
+        public MatchesAPIController(SINContext context, ImMatchService matchService)
         {
             _context = context;
             _matchService = matchService;

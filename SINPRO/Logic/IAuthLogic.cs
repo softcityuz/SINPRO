@@ -1,4 +1,5 @@
-﻿using SINPRO.InputTypes;
+﻿using SINPRO.Entity.DataModels;
+using SINPRO.InputTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace SINPRO.Logic
     public interface IAuthLogic
     {
         string Register(RegisterInputType registerInput);
+        string Register(mUser mUser);
         LoginViewModel Login(LoginInputType loginInput);
         string LogOut(string accesToken);
         LoginViewModel RenewAccessToken(RenewTokenInputType renewToken);

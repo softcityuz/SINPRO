@@ -18,6 +18,7 @@ namespace SINPRO.Entity.DataModels
         public string email { get; set; }
         public string password { get; set; }
         public int roleId { get; set; }
+        public DateTime statusDate { get; set; }
         public int status { get; set; }
         public string refreshToken { get; set; }
         public DateTime? refershTokenExpiration { get; set; }

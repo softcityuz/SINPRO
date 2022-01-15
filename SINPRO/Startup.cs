@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using SINPRO.Entity;
@@ -16,6 +17,7 @@ using SINPRO.Middleware;
 using SINPRO.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -79,7 +81,7 @@ namespace SINPRO
             services.AddControllersWithViews().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             services.AddSession(options =>
-            options.IdleTimeout = TimeSpan.FromMinutes(15));
+            options.IdleTimeout = TimeSpan.FromMinutes(600));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -103,7 +105,12 @@ namespace SINPRO
             app.UseRouting();
 
             app.UseSession();
-
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider=new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "wwwroot")),
+                RequestPath="/files"
+            });
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCors(x => x
@@ -115,7 +122,7 @@ namespace SINPRO
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Matches}/{action=Index}/{id?}");
             });
         }
     }

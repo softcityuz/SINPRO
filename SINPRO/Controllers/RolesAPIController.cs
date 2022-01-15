@@ -56,10 +56,7 @@ namespace SINPRO.Controllers
             {
                 return BadRequest();
             }
-            var res = _rolesService.GetByID(id);
-            mRole.inserted = res.inserted;
-            mRole.updated = DateTime.Now;
-            _context.Entry(mRole).State = EntityState.Modified;
+            _rolesService.Update(mRole);
 
             try
             {

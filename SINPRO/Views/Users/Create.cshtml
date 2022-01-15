@@ -1,0 +1,127 @@
+﻿@model SINPRO.Entity.DataModels.mUser
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>mUser</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" onsubmit = "return validate();" name = "myForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="fName" class="control-label"></label>
+                <input asp-for="fName" class="form-control" />
+                <span asp-validation-for="fName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sName" class="control-label"></label>
+                <input asp-for="sName" class="form-control" />
+                <span asp-validation-for="sName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="phone" class="control-label"></label>
+                <input asp-for="phone" class="form-control" />
+                <span asp-validation-for="phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="email" class="control-label"></label>
+                <input asp-for="email" class="form-control" type="email"/>
+                <span asp-validation-for="email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label"></label>
+                <input asp-for="password" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="status" class="control-label"></label>
+                <select asp-for="status" class="form-control">
+                    <option value="1" selected>Active</option>
+                    <option value="2">No active</option>
+                </select>
+                <span asp-validation-for="status" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="statusDate" class="control-label"></label>
+                <input type="date" asp-for="statusDate"  class="form-control" required/>
+                <span asp-validation-for="statusDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" id="bSubmit"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script type="text/javascript">
+    function validate() {
+
+        if (document.myForm.fName.value == "") {
+            alert("Please provide your fname!");
+            document.myForm.fName.focus();
+            return false;
+        }
+        if (document.myForm.email.value == "") {
+            alert("Please provide your email!");
+            document.myForm.email.focus();
+            return false;
+        }
+        else {
+            $.ajax({
+                type: 'POST',
+                url: '/users/findUser',
+                data: { login: text },
+                success: function (data) {
+                    if (data != "") {
+                        alert("Email alredy exist!");
+                        return false;
+                    }
+                },
+                dataType: "json",
+                async: false
+            });
+        }
+        //if (!getBase(document.myForm.email.value)) {
+        //    document.myForm.email.focus();
+        //    return false;
+        //}
+
+        //if (document.myForm.Zip.value == "" || isNaN(document.myForm.Zip.value) ||
+        //    document.myForm.Zip.value.length != 5) {
+
+        //    alert("Please provide a zip in the format #####.");
+        //    document.myForm.Zip.focus();
+        //    return false;
+        //}
+        //if (document.myForm.Country.value == "-1") {
+        //    alert("Please provide your country!");
+        //    return false;
+        //}
+        return (false);
+    }
+    function getBase(text) {
+        $.ajax({
+            type: 'POST',
+            url: '/users/findUser',
+            data: { login: text },
+            success: function (data) {
+                if (data != "") {
+
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            },
+            dataType: "json",
+            async: false
+        });
+        }
+</script>
