@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ namespace SINPRO.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy ="user")]
     public class BannersAPIController : ControllerBase
     {
         private readonly SINContext _context;
@@ -23,7 +26,6 @@ namespace SINPRO.Controllers
             _context = context;
             _bannerService = bannerService;
         }
-        [Authorize]
         // GET: api/Banners
         [HttpGet]
         public async Task<ActionResult<IEnumerable<mBanner>>> GetmBanner()
@@ -45,8 +47,6 @@ namespace SINPRO.Controllers
             return mBanner;
         }
         [Authorize(Policy = "admin")]
-        // PUT: api/Banners/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutmBanner(int id, mBanner mBanner)
         {
@@ -92,7 +92,6 @@ namespace SINPRO.Controllers
         }
 
         [Authorize(Policy = "admin")]
-        // DELETE: api/Banners/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletemBanner(int id)
         {
@@ -107,7 +106,6 @@ namespace SINPRO.Controllers
 
             return NoContent();
         }
-        [Authorize(Policy = "admin")]
         private bool mBannerExists(int id)
         {
             return _context.mBanner.Any(e => e.id == id);

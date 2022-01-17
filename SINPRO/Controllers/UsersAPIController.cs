@@ -14,7 +14,7 @@ namespace SINPRO.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Policy = "users")]
+    [Authorize(Policy = "admin")]
     public class UsersAPIController : ControllerBase
     {
         private readonly SINContext _context;

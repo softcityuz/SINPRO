@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SINPRO.Entity;
 
 namespace SINPRO.Migrations
 {
     [DbContext(typeof(SINContext))]
-    partial class SINContextModelSnapshot : ModelSnapshot
+    [Migration("20220117172346_timezones")]
+    partial class timezones
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

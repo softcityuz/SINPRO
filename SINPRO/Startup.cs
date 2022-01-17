@@ -63,7 +63,8 @@ namespace SINPRO
             services.AddAuthorization(options =>
             {
 
-                options.AddPolicy("admin", policy => { policy.RequireRole(new string[] { "user", "admin" }); });
+                options.AddPolicy("admin", policy => { policy.RequireRole(new string[] { "admin" }); });
+                options.AddPolicy("user", policy => { policy.RequireRole(new string[] { "user", "admin" }); });
 
             });
             string mySqlConnectionStr = Configuration.GetConnectionString("DefaultConnection");

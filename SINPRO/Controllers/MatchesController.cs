@@ -74,7 +74,7 @@ namespace SINPRO.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,firstTimeName,secondTimeName,matchTime,matchDate")] mMatch mMatch,IFormFile firstTimePhoto,IFormFile secondTimePhoto)
+        public async Task<IActionResult> Create([Bind("id,firstTimeName,secondTimeName,matchTime,matchDate,textDescription")] mMatch mMatch,IFormFile firstTimePhoto,IFormFile secondTimePhoto)
         {
             if (HttpContext.Session.GetString("userName") == null)
             {
@@ -160,7 +160,7 @@ namespace SINPRO.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,firstTimeName,secondTimeName,matchTime,matchDate")] mMatch mMatch, IFormFile firstTimePhoto, IFormFile secondTimePhoto)
+        public async Task<IActionResult> Edit(int id, [Bind("id,firstTimeName,secondTimeName,matchTime,matchDate,textDescription")] mMatch mMatch, IFormFile firstTimePhoto, IFormFile secondTimePhoto)
         {
             if (HttpContext.Session.GetString("userName") == null)
             {

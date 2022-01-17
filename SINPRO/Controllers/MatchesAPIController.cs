@@ -14,6 +14,7 @@ namespace SINPRO.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "user")]
     public class MatchesAPIController : ControllerBase
     {
         private readonly SINContext _context;
@@ -26,7 +27,6 @@ namespace SINPRO.Controllers
         }
 
         // GET: api/mMatches
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<mMatch>>> GetmMatch()
         {
@@ -46,10 +46,7 @@ namespace SINPRO.Controllers
 
             return mMatch;
         }
-
-        // PUT: api/mMatches/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [Authorize]
+        [Authorize(Policy = "admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutmMatch(int id, mMatch mMatch)
         {
@@ -83,7 +80,7 @@ namespace SINPRO.Controllers
 
         // POST: api/mMatches
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [Authorize]
+        [Authorize(Policy = "admin")]
         [HttpPost]
         public async Task<ActionResult<mMatch>> PostmMatch(mMatch mMatch)
         {
@@ -95,7 +92,7 @@ namespace SINPRO.Controllers
         }
 
         // DELETE: api/mMatches/5
-        [Authorize]
+        [Authorize(Policy = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletemMatch(int id)
         {
@@ -110,7 +107,6 @@ namespace SINPRO.Controllers
 
             return NoContent();
         }
-        [Authorize]
         private bool mMatchExists(int id)
         {
             return _context.mMatch.Any(e => e.id == id);

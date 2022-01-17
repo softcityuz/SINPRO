@@ -35,6 +35,11 @@
 
             </div>
             <div class="form-group">
+                <label asp-for="textDescription" class="control-label"></label>
+                <textarea asp-for="textDescription" class="form-control" required cols="100" rows="10"></textarea>
+                <span asp-validation-for="textDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="matchTime" class="control-label"></label>
                 <input asp-for="matchTime" class="form-control" required />
                 <span asp-validation-for="matchTime" class="text-danger"></span>

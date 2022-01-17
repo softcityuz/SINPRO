@@ -14,6 +14,7 @@ namespace SINPRO.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "user")]
     public class NewsAPIController : ControllerBase
     {
         private readonly SINContext _context;
@@ -25,7 +26,6 @@ namespace SINPRO.Controllers
         }
 
         // GET: api/News
-        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<mNew>>> GetmNew()
         {
@@ -33,7 +33,6 @@ namespace SINPRO.Controllers
         }
 
         // GET: api/News/5
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<mNew>> GetmNew(int id)
         {
@@ -49,7 +48,7 @@ namespace SINPRO.Controllers
 
         // PUT: api/News/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [Authorize]
+        [Authorize(Policy = "admin")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutmNew(int id, mNew mNew)
         {
@@ -83,7 +82,7 @@ namespace SINPRO.Controllers
 
         // POST: api/News
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [Authorize]
+        [Authorize(Policy = "admin")]
         [HttpPost]
         public async Task<ActionResult<mNew>> PostmNew(mNew mNew)
         {
@@ -95,7 +94,7 @@ namespace SINPRO.Controllers
         }
 
         // DELETE: api/News/5
-        [Authorize]
+        [Authorize(Policy = "admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletemNew(int id)
         {

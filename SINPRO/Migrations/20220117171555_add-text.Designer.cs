@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SINPRO.Entity;
 
 namespace SINPRO.Migrations
 {
     [DbContext(typeof(SINContext))]
-    partial class SINContextModelSnapshot : ModelSnapshot
+    [Migration("20220117171555_add-text")]
+    partial class addtext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,8 +60,8 @@ namespace SINPRO.Migrations
                     b.Property<DateTime>("matchDate")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<TimeSpan>("matchTime")
-                        .HasColumnType("time(6)");
+                    b.Property<int>("matchTime")
+                        .HasColumnType("int");
 
                     b.Property<string>("secondTimeName")
                         .HasColumnType("longtext");
@@ -133,20 +135,20 @@ namespace SINPRO.Migrations
                         new
                         {
                             id = 1,
-                            inserted = new DateTime(2022, 1, 17, 22, 23, 46, 270, DateTimeKind.Local).AddTicks(7863),
+                            inserted = new DateTime(2022, 1, 17, 22, 15, 55, 213, DateTimeKind.Local).AddTicks(9272),
                             parentId = 1,
                             resourceName = "admin",
                             status = true,
-                            updated = new DateTime(2022, 1, 17, 22, 23, 46, 270, DateTimeKind.Local).AddTicks(8118)
+                            updated = new DateTime(2022, 1, 17, 22, 15, 55, 213, DateTimeKind.Local).AddTicks(9530)
                         },
                         new
                         {
                             id = 2,
-                            inserted = new DateTime(2022, 1, 17, 22, 23, 46, 270, DateTimeKind.Local).AddTicks(8629),
+                            inserted = new DateTime(2022, 1, 17, 22, 15, 55, 214, DateTimeKind.Local).AddTicks(48),
                             parentId = 2,
                             resourceName = "user",
                             status = true,
-                            updated = new DateTime(2022, 1, 17, 22, 23, 46, 270, DateTimeKind.Local).AddTicks(8633)
+                            updated = new DateTime(2022, 1, 17, 22, 15, 55, 214, DateTimeKind.Local).AddTicks(52)
                         });
                 });
 
@@ -203,12 +205,12 @@ namespace SINPRO.Migrations
                         {
                             id = 1,
                             email = "admin@gmail.com",
-                            inserted = new DateTime(2022, 1, 17, 22, 23, 46, 271, DateTimeKind.Local).AddTicks(7870),
+                            inserted = new DateTime(2022, 1, 17, 22, 15, 55, 214, DateTimeKind.Local).AddTicks(9324),
                             password = "DDWjBLfJgK1/V+Owzhs/E9yvyP/YGaFnsFpbECWHh/cuafCO",
                             roleId = 1,
                             status = 1,
                             statusDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            updated = new DateTime(2022, 1, 17, 22, 23, 46, 271, DateTimeKind.Local).AddTicks(8098)
+                            updated = new DateTime(2022, 1, 17, 22, 15, 55, 214, DateTimeKind.Local).AddTicks(9556)
                         });
                 });
 
