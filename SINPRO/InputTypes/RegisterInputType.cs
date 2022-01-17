@@ -14,6 +14,7 @@ namespace SINPRO.InputTypes
         public string Address { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public DateTime statusDate { get; set; }
         public string ConfirmPassword { get; set; }
     }
 }

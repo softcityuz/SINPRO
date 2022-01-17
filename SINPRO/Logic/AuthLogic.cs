@@ -93,6 +93,7 @@ namespace SINPRO.Logic
 				fName=registerInput.Name,
 				sName=registerInput.Lastname,
 				phone=registerInput.Phone,
+				statusDate=registerInput.statusDate,
 				status = 1,
 				roleId = 2,
 			};
@@ -419,7 +420,8 @@ namespace SINPRO.Logic
 				Name = mUser.fName,
 				Password = mUser.password,
 				ConfirmPassword = mUser.password,
-				Phone = mUser.phone
+				Phone = mUser.phone,
+				statusDate=mUser.statusDate
 			};
 			return Register(registerInputType);
         }

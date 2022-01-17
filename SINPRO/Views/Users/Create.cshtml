@@ -62,32 +62,58 @@
 </div>
 <script type="text/javascript">
     function validate() {
-
+    var b = true;
         if (document.myForm.fName.value == "") {
             alert("Please provide your fname!");
             document.myForm.fName.focus();
-            return false;
+            b= false;
         }
-        if (document.myForm.email.value == "") {
+       else if (document.myForm.password.value.length<8) {
+            alert("Password should be at least 8 digits");
+            document.myForm.password.focus();
+            b= false;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       else if (document.myForm.email.value == "") {
             alert("Please provide your email!");
             document.myForm.email.focus();
-            return false;
+            b= false;
         }
         else {
             $.ajax({
                 type: 'POST',
                 url: '/users/findUser',
-                data: { login: text },
+                data: { login: document.myForm.email.value },
                 success: function (data) {
-                    if (data != "") {
+                    if (data != ""  ) {
                         alert("Email alredy exist!");
-                        return false;
+                        document.myForm.email.focus();
+                        b= false;
                     }
+
                 },
                 dataType: "json",
                 async: false
-            });
-        }
+            })
+        };
         //if (!getBase(document.myForm.email.value)) {
         //    document.myForm.email.focus();
         //    return false;
@@ -104,7 +130,7 @@
         //    alert("Please provide your country!");
         //    return false;
         //}
-        return (false);
+        return b;
     }
     function getBase(text) {
         $.ajax({
