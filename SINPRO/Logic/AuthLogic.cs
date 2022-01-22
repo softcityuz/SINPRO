@@ -344,7 +344,7 @@ namespace SINPRO.Logic
 			}
 
 			var user = _authContext.mUser
-			.Where(_ => _.email == email && _.refreshToken == renewToken.RefreshToken && _.refershTokenExpiration > DateTime.Now).FirstOrDefault();
+			.Where(_ => _.email == email && _.refreshToken == renewToken.RefreshToken && _.refershTokenExpiration > DateTime.Now).FirstOrDefault(); 
 			if (user == null)
 			{
 				result.Message = "Invalid Token";
