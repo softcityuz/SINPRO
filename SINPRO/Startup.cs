@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using SINPRO.Entity;
 using SINPRO.Helpers;
 using SINPRO.Logic;
@@ -40,6 +41,10 @@ namespace SINPRO
             //    options.UseSqlServer(
             //        Configuration.GetConnectionString("DefaultConnection")));
             services.Configure<TokenSettings>(Configuration.GetSection("TokenSettings"));
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SINOV-PROJECT", Version = "v1" });
+            });
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -91,6 +96,8 @@ namespace SINPRO
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SINOV-PROJECT v1"));
                 //app.UseMigrationsEndPoint();
             }
             else
