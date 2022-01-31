@@ -234,4 +234,4 @@ _Pvt_Extensions
 .fake/
 
 #db connection
-CRM.API/appsettings.json
+SINPRO/appsettings.json
