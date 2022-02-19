@@ -98,7 +98,7 @@ namespace SINPRO.Controllers
             var filePATH = "";
             if (oldFileName != null || oldFileName != "")
             {
-                string spath = _hostEnvironment.ContentRootPath + @"\wwwroot\" + oldFileName;
+                string spath = _hostEnvironment.ContentRootPath + @"/wwwroot/" + oldFileName;
                 FileInfo fileInfo = new FileInfo(spath);
                 if (fileInfo.Exists)
                 {
@@ -108,7 +108,7 @@ namespace SINPRO.Controllers
             if (formFile != null && formFile.Length > 0)
             {
                 var guid = Guid.NewGuid().ToString();
-                string spath = _hostEnvironment.ContentRootPath+ @"\wwwroot\files\";
+                string spath = _hostEnvironment.ContentRootPath+ @"/wwwroot/files/";
                 //string spFiles = spath.Substring(0, spath.IndexOf("\\"));
                 //spFiles = Path.Combine(spFiles, "");
                 var filename = guid+ "." + fileType(formFile.ContentType);
